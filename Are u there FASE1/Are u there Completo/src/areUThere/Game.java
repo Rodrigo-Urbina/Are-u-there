@@ -113,22 +113,64 @@ public class Game implements Runnable {
         Assets.init();
         player = new Player(0, getHeight() - 100, 1, 64, 96, this);
         rooms = new ArrayList<Room>();
-        rooms.add(new Room(0,0,0,0,0, this));
         currentRoom = 0;
         interacting = false;
         enemy = new Enemy(300, 110, 50, 50, this);
         display.getJframe().addKeyListener(keyManager);
-        
-        rooms.add(new Room(0, 0,0,0,0, this));
-        rooms.add(new Room(0, 0,0,0,0, this));
-        currentRoom = 0;
-        tempDoor = new Door(getWidth() / 2 - 64,32, 64, 64, 0,0,0);
-        rooms.get(0).getDoors().add(tempDoor);
-        rooms.get(1).getDoors().add(tempDoor);
+        currentRoom = 3;
         changingRoom = false;
         interacting = false;
         changingRoomAlpha = 1;
         changingRoomAux = 1;
+        
+        
+        //--------------ROOMS------------------
+        //Falta corregir las conexiones.
+        ArrayList<String> temp; 
+        
+        //Lobby
+        rooms.add(new Room(1024,768, this));
+        rooms.get(0).getDoors().add(new Door(0, 436, 16, 64, 1, 0, 0));
+        rooms.get(0).getDoors().add(new Door(1008, 436, 16, 64, 2, 0, 0));
+        rooms.get(0).getDoors().add(new Door(448, 240, 128, 96, 3, 0, 0));
+        rooms.get(0).getDoors().add(new Door(448, 576, 128, 16, 3, 0, 0));
+        temp = new ArrayList<String>();
+        temp.add("Sofa");
+        rooms.get(0).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(0).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));
+        
+        //Library
+        rooms.add(new Room(1024,1536, this));
+        rooms.get(1).getDoors().add(new Door(0,700,16,64, 0, 0, 0));
+        temp = new ArrayList<String>();
+        temp.add("Reading table");
+        rooms.get(1).getObstructions().add(new TestObstruction(320,640,384,128,temp,this));
+        temp = new ArrayList<String>();
+        temp.add("Chair");
+        rooms.get(1).getObstructions().add(new TestObstruction(272,640,48,112,temp,this));
+        rooms.get(1).getObstructions().add(new TestObstruction(704,640,48,112,temp,this));
+        
+        //FrontYard
+        rooms.add(new Room(1024,1536, this));
+        rooms.get(2).getDoors().add(new Door(448, 240, 128, 160, 0, 0, 0));
+        //temp = new ArrayList<String>();
+        //rooms.get(2).getObstructions().add(new TestObstruction(0,0,100,100,temp,this));
+        
+        //CandyRoom
+        rooms.add(new Room(1024,768, this));
+        rooms.get(3).getDoors().add(new Door(320, 384, 16, 64, 0, 0, 0));
+        temp = new ArrayList<String>();
+        temp.add("Candy racks");
+        rooms.get(3).getObstructions().add(new TestObstruction(320,192,112,160,temp,this));
+        rooms.get(3).getObstructions().add(new TestObstruction(464,192,96,160,temp,this));
+        rooms.get(3).getObstructions().add(new TestObstruction(592,192,112,160,temp,this));
+        temp = new ArrayList<String>();
+        temp.add("Gum machine");
+        rooms.get(3).getObstructions().add(new TestObstruction(352,448,96,128,temp,this));
+        temp = new ArrayList<String>();
+        temp.add("Cotton candy");
+        rooms.get(3).getObstructions().add(new TestObstruction(576,448,128,128,temp,this));
+        
     }
 
     @Override

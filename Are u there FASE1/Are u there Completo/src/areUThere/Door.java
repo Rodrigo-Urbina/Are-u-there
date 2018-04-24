@@ -39,8 +39,8 @@ public class Door extends Item {
         return nextRoom;
     }
 
-    public void setNextRoom(int room1) {
-        this.nextRoom = room1;
+    public void setNextRoom(int nextRoom) {
+        this.nextRoom = nextRoom;
     }
     
     public Door(int x, int y, int width, int height, int nextRoom, int nextX, int nextY) {
@@ -49,8 +49,6 @@ public class Door extends Item {
         this.nextX = nextX;
         this.nextY = nextY;
     }
-    
-    
     
     @Override
     public void tick() {

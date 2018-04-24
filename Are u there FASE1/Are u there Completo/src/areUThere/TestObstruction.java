@@ -26,11 +26,11 @@ public class TestObstruction extends Item {
         super(x, y, width, height);
         this.game = game;
         this.textBox = new TextBox(text, game);
-        this.color = new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255));
+        //this.color = new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255));
     }
     
     public void interacts (Player p, Graphics g) {
-        if (this.intersects(p, true) && game.getKeyManager().space) {
+        if (this.intersects(p, true) && game.getKeyManager().space && this.textBox.text.size() != 0) {
             textBox.render(g);
             game.setInteracting(true);
             game.setCurrentInteraction(this);
@@ -44,7 +44,7 @@ public class TestObstruction extends Item {
 
     @Override
     public void render(Graphics g) {
-            g.setColor(color);
+            g.setColor(new Color(100,150,200));
             g.fillRect(this.x, this.y, this.getWidth(), this.getHeight());
     }
 }
