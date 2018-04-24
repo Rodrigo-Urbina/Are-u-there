@@ -122,7 +122,7 @@ public class Game implements Runnable {
         rooms.add(new Room(0, 0,0,0,0, this));
         rooms.add(new Room(0, 0,0,0,0, this));
         currentRoom = 0;
-        tempDoor = new Door(getWidth() / 2 - 64,32, 64, 64, 0, 1);
+        tempDoor = new Door(getWidth() / 2 - 64,32, 64, 64, 0,0,0);
         rooms.get(0).getDoors().add(tempDoor);
         rooms.get(1).getDoors().add(tempDoor);
         changingRoom = false;

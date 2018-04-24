@@ -15,29 +15,39 @@ import java.awt.Graphics;
 public class Door extends Item {
     
     //the door connects the following two rooms
-    private int room1;
-    private int room2;
+    private int nextRoom;
+    private int nextX;
+    private int nextY;
 
-    public int getRoom1() {
-        return room1;
+    public int getNextX() {
+        return nextX;
     }
 
-    public void setRoom1(int room1) {
-        this.room1 = room1;
+    public void setNextX(int nextX) {
+        this.nextX = nextX;
     }
 
-    public int getRoom2() {
-        return room2;
+    public int getNextY() {
+        return nextY;
     }
 
-    public void setRoom2(int room2) {
-        this.room2 = room2;
+    public void setNextY(int nextY) {
+        this.nextY = nextY;
+    }
+
+    public int getNextRoom() {
+        return nextRoom;
+    }
+
+    public void setNextRoom(int room1) {
+        this.nextRoom = room1;
     }
     
-    public Door(int x, int y, int width, int height, int room1, int room2) {
+    public Door(int x, int y, int width, int height, int nextRoom, int nextX, int nextY) {
         super(x, y, width, height);
-        this.room1 = room1;
-        this.room2 = room2;
+        this.nextRoom = nextRoom;
+        this.nextX = nextX;
+        this.nextY = nextY;
     }
     
     
