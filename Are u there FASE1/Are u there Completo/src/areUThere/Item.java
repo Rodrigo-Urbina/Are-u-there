@@ -103,7 +103,7 @@ public abstract class Item {
                 this.getBounds().intersects(((Item) obj).getBounds()));
     }
     
-    //for interactions
+    //for interactions (text)
     public boolean intersects(Object obj, boolean type) {
         //check if object is item and if this rectangle intersects obj rectangle
         return (obj instanceof Item && this.getBounds(type).intersects(((Item) obj).getBounds()));
@@ -113,7 +113,7 @@ public abstract class Item {
         return new Rectangle(getX(), getY(), getWidth(), getHeight());
     }
     
-    //for interactions
+    //for interactions (text)
     private Rectangle getBounds(boolean type) {
         return new Rectangle(getX()-5, getY()-5, getWidth()+10, getHeight()+10);
     }

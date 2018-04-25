@@ -36,6 +36,7 @@ public class Room {
     private boolean passed; //flag to check if the puzzle has already been passed
     private ArrayList<TestObstruction> obstructions; //list of all objects in room
     private ArrayList<Door> doors;  // to store doors
+    private ArrayList<Wall> walls;  // to store walls
     
     public Room (int width, int height, Game game) {
         this.game = game;
@@ -43,6 +44,7 @@ public class Room {
         this.width = width;
         doors = new ArrayList<Door>();
         obstructions = new ArrayList<TestObstruction>();
+        walls = new ArrayList<Wall>();
     }
     
     public ArrayList<Door> getDoors() {
@@ -55,6 +57,10 @@ public class Room {
     
     public ArrayList<TestObstruction> getObstructions () {
         return obstructions;
+    }
+    
+    public ArrayList<Wall> getWalls () {
+        return walls;
     }
 
     public boolean isPassed() {
@@ -80,6 +86,10 @@ public class Room {
         }
         for (Door d : this.doors) {
             d.render(g);
+        }
+        
+        for (Wall w : this.walls) {
+            w.render(g);
         }
     }
     
