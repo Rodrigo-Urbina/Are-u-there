@@ -42,7 +42,7 @@ public class Game implements Runnable {
     
     
     //PROBANDO RAUL
-
+    //htytdhgddjdd
 
     /**
      * to create title, width and height and set the game is still not running
