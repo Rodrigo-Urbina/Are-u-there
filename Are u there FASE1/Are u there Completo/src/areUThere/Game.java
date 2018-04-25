@@ -42,7 +42,6 @@ public class Game implements Runnable {
     
     
     //PROBANDO RAUL
-    // que pedo soy raul
 
 
     /**
