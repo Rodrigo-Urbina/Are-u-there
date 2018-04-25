@@ -110,65 +110,116 @@ public class Game implements Runnable {
     private void init() {
         display = new Display(title, getWidth(), getHeight());
         Assets.init();
-        player = new Player(0, getHeight() - 100, 1, 64, 96, this);
+        player = new Player(getWidth()/2, getHeight()/2, 1, 64, 96, this);
         rooms = new ArrayList<Room>();
-        currentRoom = 0;
+        currentRoom = 1;
         interacting = false;
         enemy = new Enemy(300, 110, 50, 50, this);
         display.getJframe().addKeyListener(keyManager);
-        currentRoom = 0;
+        currentRoom = 3;
         changingRoom = false;
         interacting = false;
         changingRoomAlpha = 1;
         changingRoomAux = 1;
         
         
-    //----------------ROOMS------------------
+//----------------ROOMS------------------
         //Falta corregir las conexiones.
         ArrayList<String> temp; 
         
     //----------Lobby
+        //Initialize room
         rooms.add(new Room(1024,768, this));
-        rooms.get(0).getDoors().add(new Door(0, 436, 16, 64, 1, 0, 0));
-        rooms.get(0).getDoors().add(new Door(1008, 436, 16, 64, 2, 0, 0));
-        rooms.get(0).getDoors().add(new Door(448, 240, 128, 96, 3, 0, 0));
-        rooms.get(0).getDoors().add(new Door(448, 576, 128, 16, 3, 0, 0));
-        temp = new ArrayList<String>();
+        
+        //Add walls
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,576,1024,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,172,1024,20));
+        
+        //Add doors
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to 
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(1008, 420, 16, 64, 2, 0, 0));  // to
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 224, 128, 96, 3, 0, 0));  // to
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 560, 128, 16, 3, 0, 0));  // to
+        
+        //Add objects
+        temp = new ArrayList<String>(); //object text
         temp.add("Sofa");
-        rooms.get(0).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
-        rooms.get(0).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));
         
     //----------Library
+        //Initialize room
         rooms.add(new Room(1024,1536, this));
-        rooms.get(1).getDoors().add(new Door(0,700,16,64, 0, 0, 0));
+        
+        //Add walls
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,256,400,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(624,256,400,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(96,204,128,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(448,204,128,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(800,204,128,20));
+        
+        //Add doors
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(0,700,16,64, 0, 0, 0)); // to
+        
+        //Add objects
         temp = new ArrayList<String>();
         temp.add("Reading table");
-        rooms.get(1).getObstructions().add(new TestObstruction(320,640,384,128,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(320,640,384,128,temp,this));
         temp = new ArrayList<String>();
         temp.add("Chair");
-        rooms.get(1).getObstructions().add(new TestObstruction(272,640,48,112,temp,this));
-        rooms.get(1).getObstructions().add(new TestObstruction(704,640,48,112,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(272,640,48,112,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(704,640,48,112,temp,this));
+        temp = new ArrayList<String>();
+        temp.add("Just some old books");
+        //Books upstairs
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(0,0,96,224,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(224,0,224,224,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(576,0,224,224,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(928,0,96,224,temp,this));
+        //Books floor wall
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(0,256,416,256,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(608,256,416,256,temp,this));
         
     //----------FrontYard
+        //Initialize room
         rooms.add(new Room(1024,1536, this));
-        rooms.get(2).getDoors().add(new Door(448, 240, 128, 160, 0, 0, 0));
-        //temp = new ArrayList<String>();
-        //rooms.get(2).getObstructions().add(new TestObstruction(0,0,100,100,temp,this));
+        
+        //Add walls
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,492,352,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(672,492,352,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(352,428,32,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(640,428,32,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(384,364,64,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(576,364,64,20));
+        
+        //Add doors
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 224, 128, 160, 0, 0, 0));
         
     //----------CandyRoom
+        //Initialize room
         rooms.add(new Room(1024,768, this));
-        rooms.get(3).getDoors().add(new Door(320, 384, 16, 64, 0, 0, 0));
+        
+        //Add walls
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(300,192,20,384));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(704,192,20,384));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(300,172,424,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(300,576,424,20));
+        
+        //Add doors
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(320, 384, 16, 64, 0, 0, 0));
+        
+        //Add objects
         temp = new ArrayList<String>();
         temp.add("Candy racks");
-        rooms.get(3).getObstructions().add(new TestObstruction(320,192,112,160,temp,this));
-        rooms.get(3).getObstructions().add(new TestObstruction(464,192,96,160,temp,this));
-        rooms.get(3).getObstructions().add(new TestObstruction(592,192,112,160,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(320,192,112,160,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(464,192,96,160,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(592,192,112,160,temp,this));
         temp = new ArrayList<String>();
         temp.add("Gum machine");
-        rooms.get(3).getObstructions().add(new TestObstruction(352,448,96,128,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(352,448,96,128,temp,this));
         temp = new ArrayList<String>();
         temp.add("Cotton candy");
-        rooms.get(3).getObstructions().add(new TestObstruction(576,448,128,128,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(576,448,128,128,temp,this));
         
     }
 
@@ -205,9 +256,11 @@ public class Game implements Runnable {
 
     private void tick() {
         keyManager.tick();
-        if (interacting) {
+        
+        
+        if (interacting) { //
             currentInteraction.textBox.tick();
-        } else if (changingRoom) {
+        } else if (changingRoom) { //crossed a door, fade in/out kicks in
             if (changingRoomAlpha >= 255) {
                 changingRoomAlpha = 254;
                 currentRoom = selectedDoor.getNextRoom();
@@ -224,8 +277,9 @@ public class Game implements Runnable {
             }
         } else {
             player.tick();
-            enemy.tick();
+            //enemy.tick();
             
+            //Check if player or enemy intersects with an obstruction
             for(TestObstruction o: rooms.get(currentRoom).getObstructions()) {
                 o.interacts(player, g);
                 if(player.intersects(o)) {
@@ -252,12 +306,29 @@ public class Game implements Runnable {
                     }
                 }
             }
+            
+            //Check if player intersects with a door
             for (Door d : rooms.get(currentRoom).getDoors()) {
                 if (d.intersects(player)) { //esto esta aqui para checar si el jugador cruza una puerta 
                     selectedDoor = d;
                     changingRoom = true;
                 }
             } 
+            
+            //Check if player intersects with a wall
+            for (Wall w : rooms.get(currentRoom).getWalls()) {
+                if(player.intersects(w)) {
+                    if (player.getDirection() == 1) {
+                        player.setY(player.getY() + 32);
+                    } else if (player.getDirection() == 2) {
+                        player.setX(player.getX() - 32);
+                    } else if (player.getDirection() == 3) {
+                        player.setY(player.getY() - 32);
+                    } else if (player.getDirection() == 4) {
+                        player.setX(player.getX() + 32);
+                    }
+                }
+            }
         }
     }
 
