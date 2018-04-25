@@ -41,6 +41,8 @@ public class Game implements Runnable {
     int changingRoomAux;
     
     
+    //PROBANDO RAUL
+    //SEXOILV
 
 
     /**
