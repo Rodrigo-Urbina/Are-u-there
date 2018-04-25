@@ -116,7 +116,7 @@ public class Game implements Runnable {
         interacting = false;
         enemy = new Enemy(300, 110, 50, 50, this);
         display.getJframe().addKeyListener(keyManager);
-        currentRoom = 3;
+        currentRoom = 0;
         changingRoom = false;
         interacting = false;
         changingRoomAlpha = 1;
@@ -132,8 +132,9 @@ public class Game implements Runnable {
         rooms.add(new Room(1024,768, this));
         
         //Add walls
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(576,300,448,20));
         rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,576,1024,20));
-        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,172,1024,20));
         
         //Add doors
         rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to 
@@ -257,8 +258,7 @@ public class Game implements Runnable {
     private void tick() {
         keyManager.tick();
         
-        
-        if (interacting) { //
+        if (interacting) { // interacting with object
             currentInteraction.textBox.tick();
         } else if (changingRoom) { //crossed a door, fade in/out kicks in
             if (changingRoomAlpha >= 255) {
@@ -345,6 +345,8 @@ public class Game implements Runnable {
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
+            g.setColor(new Color(0,0,0));
+            g.fillRect(0,0,this.getWidth(),this.getHeight());
             rooms.get(currentRoom).render(g);
             player.render(g);
             enemy.render(g);
