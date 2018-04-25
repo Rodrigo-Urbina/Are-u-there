@@ -42,7 +42,6 @@ public class Game implements Runnable {
     
     
     //PROBANDO RAUL
-    //SEXOILV
 
 
     /**
