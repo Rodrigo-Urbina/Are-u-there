@@ -70,9 +70,11 @@ public class Room {
     }
     
     public void render(Graphics g) {
-        g.drawImage(Assets.roomImages.get(game.getCurrentRoom()), 0, 0, getWidth(), getHeight(), null);
-        //g.setColor(new Color(0,0,0));
-        //g.fillRect(0, 0, game.getWidth(), game.getHeight());
+        g.setColor(new Color(0,0,0));
+        g.fillRect(0,0,this.getWidth(),this.getHeight());
+        
+        g.drawImage(Assets.roomImages.get(game.getCurrentRoom()), 0, 0, this.getWidth(), this.getHeight(), null);
+        
         for (TestObstruction o : this.obstructions) {
             o.render(g);
         }

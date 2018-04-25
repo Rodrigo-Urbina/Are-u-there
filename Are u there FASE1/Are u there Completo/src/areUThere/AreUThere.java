@@ -16,7 +16,7 @@ public class AreUThere {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Game g = new Game("Juego", 1024, 800);
+        Game g = new Game("Juego", 1024, 768);
         g.start();
     }
     

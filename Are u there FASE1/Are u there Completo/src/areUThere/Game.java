@@ -37,7 +37,6 @@ public class Game implements Runnable {
     int changeRoomFrameCount;       
     boolean changingRoom;
     int changingRoomAlpha;
-    Door tempDoor;
     Door selectedDoor;
     int changingRoomAux;
     
@@ -117,18 +116,18 @@ public class Game implements Runnable {
         interacting = false;
         enemy = new Enemy(300, 110, 50, 50, this);
         display.getJframe().addKeyListener(keyManager);
-        currentRoom = 3;
+        currentRoom = 0;
         changingRoom = false;
         interacting = false;
         changingRoomAlpha = 1;
         changingRoomAux = 1;
         
         
-        //--------------ROOMS------------------
+    //----------------ROOMS------------------
         //Falta corregir las conexiones.
         ArrayList<String> temp; 
         
-        //Lobby
+    //----------Lobby
         rooms.add(new Room(1024,768, this));
         rooms.get(0).getDoors().add(new Door(0, 436, 16, 64, 1, 0, 0));
         rooms.get(0).getDoors().add(new Door(1008, 436, 16, 64, 2, 0, 0));
@@ -139,7 +138,7 @@ public class Game implements Runnable {
         rooms.get(0).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
         rooms.get(0).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));
         
-        //Library
+    //----------Library
         rooms.add(new Room(1024,1536, this));
         rooms.get(1).getDoors().add(new Door(0,700,16,64, 0, 0, 0));
         temp = new ArrayList<String>();
@@ -150,13 +149,13 @@ public class Game implements Runnable {
         rooms.get(1).getObstructions().add(new TestObstruction(272,640,48,112,temp,this));
         rooms.get(1).getObstructions().add(new TestObstruction(704,640,48,112,temp,this));
         
-        //FrontYard
+    //----------FrontYard
         rooms.add(new Room(1024,1536, this));
         rooms.get(2).getDoors().add(new Door(448, 240, 128, 160, 0, 0, 0));
         //temp = new ArrayList<String>();
         //rooms.get(2).getObstructions().add(new TestObstruction(0,0,100,100,temp,this));
         
-        //CandyRoom
+    //----------CandyRoom
         rooms.add(new Room(1024,768, this));
         rooms.get(3).getDoors().add(new Door(320, 384, 16, 64, 0, 0, 0));
         temp = new ArrayList<String>();
@@ -211,7 +210,9 @@ public class Game implements Runnable {
         } else if (changingRoom) {
             if (changingRoomAlpha >= 255) {
                 changingRoomAlpha = 254;
-                currentRoom = 1;
+                currentRoom = selectedDoor.getNextRoom();
+                player.setX(selectedDoor.getNextX());
+                player.setY(selectedDoor.getNextY());
                 selectedDoor = null;
                 changingRoomAux = -1;
             } else if (changingRoomAlpha <= 0) {
@@ -255,8 +256,6 @@ public class Game implements Runnable {
                 if (d.intersects(player)) { //esto esta aqui para checar si el jugador cruza una puerta 
                     selectedDoor = d;
                     changingRoom = true;
-                    player.setX(this.getWidth() / 2);
-                    player.setY(this.getHeight() / 2);
                 }
             } 
         }
