@@ -3,6 +3,10 @@
         A01196678
 @author Rodrigo Enrique Urbina De la Cruz
         A01281933
+@author Raul Ernesto Herrera Salinas
+        A00820257
+@author Ulises Serrano Martinez
+        A01233000
  */
 package areUThere;
 
@@ -39,8 +43,6 @@ public class Game implements Runnable {
     int changingRoomAlpha;
     Door selectedDoor;
     int changingRoomAux;
-
-    
 
     /**
      * to create title, width and height and set the game is still not running
@@ -124,10 +126,9 @@ public class Game implements Runnable {
         
 //----------------ROOMS------------------
         //Falta corregir las conexiones.
-        ArrayList<String> temp; 
+        ArrayList<String> temp;
         
-    //0
-    //----------FrontYard
+    //----------0. FrontYard
         //Initialize room
         rooms.add(new Room(1024,1536, this));
         
@@ -140,10 +141,9 @@ public class Game implements Runnable {
         rooms.get(rooms.size() - 1).getWalls().add(new Wall(576,364,64,20));
         
         //Add doors
-        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 224, 128, 160, 0, 0, 0));
-     
-    //1
-    //----------Lobby
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 224, 128, 160, 1, 512, 384)); // to lobby
+        
+    //----------1. Lobby
         //Initialize room
         rooms.add(new Room(1024,768, this));
         
@@ -153,19 +153,75 @@ public class Game implements Runnable {
         rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,576,1024,20));
         
         //Add doors
-        rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to 
-        rooms.get(rooms.size() - 1).getDoors().add(new Door(1008, 420, 16, 64, 2, 0, 0));  // to
-        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 224, 128, 96, 3, 0, 0));  // to
-        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 560, 128, 16, 3, 0, 0));  // to
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 512, 384));     // to 2. kitchen
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(1008, 420, 16, 64, 1, 512, 384));  // to 8. union room
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 224, 128, 96, 4, 512, 640));  // to 4. great hall room
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 560, 128, 16, 0, 0, 0));  // to 0. frontyard
         
         //Add objects
         temp = new ArrayList<String>(); //object text
         temp.add("Sofa");
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));
-    
-    //5
-    //----------Library
+        
+    //----------2. Kitchen *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(384,512, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------3. Dining room *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(576,576, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------4. Great Hall Room
+        //Initialize room
+        rooms.add(new Room(1024,768, this));
+        
+        //Add walls
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,160,352,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(672,160,352,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(352,64,32,192));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(640,64,32,192));
+        
+        //Add doors
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(384, 0, 256, 64, 0, 0, 0));  // to 16. upper hallway
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 352, 16, 64, 3, 0, 0));   // to 3. dining room
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 544, 16, 64, 2, 0, 0));  // to 2. kitchen
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(1008, 352, 16, 64, 5, 0, 0));  // to 5. library
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(1008, 544, 16, 64, 7, 0, 0));  // to 7. hallway
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 752, 64, 16, 1, 512, 384));  // to 1. lobby
+        
+        
+        //Add objects
+        temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));
+        
+    //----------5. Library
         //Initialize room
         rooms.add(new Room(1024,1536, this));
         
@@ -197,9 +253,72 @@ public class Game implements Runnable {
         //Books floor wall
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(0,256,416,256,temp,this));
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(608,256,416,256,temp,this));
-    
-    //10
-    //----------CandyRoom
+        
+    //----------6. Restroom *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(384,384, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------7. Hallway *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(1024,256, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------8. Union room *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(256,768, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------9. Toy room *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(1024,768, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------10. CandyRoom
         //Initialize room
         rooms.add(new Room(1024,768, this));
         
@@ -210,7 +329,7 @@ public class Game implements Runnable {
         rooms.get(rooms.size() - 1).getWalls().add(new Wall(300,576,424,20));
         
         //Add doors
-        rooms.get(rooms.size() - 1).getDoors().add(new Door(320, 384, 16, 64, 0, 0, 0));
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(320, 384, 16, 64, 0, 0, 0)); // to 8. union room
         
         //Add objects
         temp = new ArrayList<String>();
@@ -224,6 +343,166 @@ public class Game implements Runnable {
         temp = new ArrayList<String>();
         temp.add("Cotton candy");
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(576,448,128,128,temp,this));
+        
+    //----------11. Clothing room *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(384,384, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------12. Chem lab *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(512,384, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------13. Venom room *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(512,384, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------14. Dark maze *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(1024,768, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------15. Torture room *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(1024,768, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------16. Upper hallway *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(1024,256, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------17. Generic bedroom *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(512,512, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------18. Study *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(512,512, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------19. Master bedroom *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(768,768, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
+        
+    //----------20. Attic *PLACEHOLDER*
+        //Initialize room
+        rooms.add(new Room(384,512, this));
+        
+        //Add walls
+        //rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,300,448,20));
+        
+        //Add doors
+        //rooms.get(rooms.size() - 1).getDoors().add(new Door(0, 420, 16, 64, 1, 0, 0));     // to
+        
+        //Add objects
+        /*temp = new ArrayList<String>(); //object text
+        temp.add("Sofa");
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
+        rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));*/
         
     }
 
