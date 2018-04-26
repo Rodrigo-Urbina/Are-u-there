@@ -39,10 +39,8 @@ public class Game implements Runnable {
     int changingRoomAlpha;
     Door selectedDoor;
     int changingRoomAux;
+
     
-    
-    //PROBANDO RAUL
-    //htytdhgddjdd
 
     /**
      * to create title, width and height and set the game is still not running
@@ -128,6 +126,23 @@ public class Game implements Runnable {
         //Falta corregir las conexiones.
         ArrayList<String> temp; 
         
+    //0
+    //----------FrontYard
+        //Initialize room
+        rooms.add(new Room(1024,1536, this));
+        
+        //Add walls
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,492,352,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(672,492,352,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(352,428,32,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(640,428,32,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(384,364,64,20));
+        rooms.get(rooms.size() - 1).getWalls().add(new Wall(576,364,64,20));
+        
+        //Add doors
+        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 224, 128, 160, 0, 0, 0));
+     
+    //1
     //----------Lobby
         //Initialize room
         rooms.add(new Room(1024,768, this));
@@ -148,7 +163,8 @@ public class Game implements Runnable {
         temp.add("Sofa");
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(96,304,256,96,temp,this));
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(672,304,256,96,temp,this));
-        
+    
+    //5
     //----------Library
         //Initialize room
         rooms.add(new Room(1024,1536, this));
@@ -181,22 +197,8 @@ public class Game implements Runnable {
         //Books floor wall
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(0,256,416,256,temp,this));
         rooms.get(rooms.size() - 1).getObstructions().add(new TestObstruction(608,256,416,256,temp,this));
-        
-    //----------FrontYard
-        //Initialize room
-        rooms.add(new Room(1024,1536, this));
-        
-        //Add walls
-        rooms.get(rooms.size() - 1).getWalls().add(new Wall(0,492,352,20));
-        rooms.get(rooms.size() - 1).getWalls().add(new Wall(672,492,352,20));
-        rooms.get(rooms.size() - 1).getWalls().add(new Wall(352,428,32,20));
-        rooms.get(rooms.size() - 1).getWalls().add(new Wall(640,428,32,20));
-        rooms.get(rooms.size() - 1).getWalls().add(new Wall(384,364,64,20));
-        rooms.get(rooms.size() - 1).getWalls().add(new Wall(576,364,64,20));
-        
-        //Add doors
-        rooms.get(rooms.size() - 1).getDoors().add(new Door(448, 224, 128, 160, 0, 0, 0));
-        
+    
+    //10
     //----------CandyRoom
         //Initialize room
         rooms.add(new Room(1024,768, this));
