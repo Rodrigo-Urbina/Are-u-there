@@ -43,13 +43,6 @@ public class Game implements Runnable {
     int changingRoomAlpha;
     Door selectedDoor;
     int changingRoomAux;
-    
-    
-    //PROBANDO RAUL
-    //asdasdadasdsdsdsadasdasdas
-    // prueba branch raulkl=ljk
-    // nueva pruuueeeebbaaaaa
-
 
     /**
      * to create title, width and height and set the game is still not running
